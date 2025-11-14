@@ -1,18 +1,13 @@
 from rest_framework import viewsets, permissions
 from .models import Course
 from .serializers import CourseSerializer
-from .permissions import IsAdminCreateAndOwnerEdit
+
+class IsAdminOrReadOnly(permissions.BasePermission):
+    def has_permission(self, request, view):
+        if request.method in permissions.SAFE_METHODS: return True
+        return request.user.is_authenticated and request.user.role == "ADMIN"
 
 class CourseViewSet(viewsets.ModelViewSet):
+    queryset = Course.objects.all().order_by("-created_at")
     serializer_class = CourseSerializer
-    permission_classes = [IsAdminCreateAndOwnerEdit]
-
-    def get_queryset(self):
-        user = self.request.user
-        qs = Course.objects.select_related("owner").all()
-        if user.is_authenticated and user.role == "ADMIN":
-            return qs.filter(owner=user)  # admin sees only their courses
-        return qs.filter(is_published=True)  # students/public see published courses
-
-    def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+    permission_classes = [IsAdminOrReadOnly]

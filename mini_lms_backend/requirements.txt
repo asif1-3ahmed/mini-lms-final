@@ -1,12 +1,11 @@
 Django>=4.2
 djangorestframework
 djangorestframework-simplejwt
-django-cors-headers
 psycopg2-binary
-gunicorn
-whitenoise
 dj-database-url
+python-dotenv
+gunicorn
+django-cors-headers
 cloudinary
 django-cloudinary-storage
-python-dotenv
-gunicorn==21.2.0
+django-environ

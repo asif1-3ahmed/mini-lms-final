@@ -1,62 +1,119 @@
 import React from "react";
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
+
 import VerticalNavbar from "./components/VerticalNavbar";
-import CourseList from "./pages/CourseList";
-import CourseDetail from "./pages/CourseDetail";
+import PrivateRoute from "./components/PrivateRoute";
+
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+
+import CourseList from "./pages/CourseList";
+import CourseDetail from "./pages/CourseDetail";
+import CourseForm from "./pages/CourseForm";
+
 import AdminDashboard from "./pages/AdminDashboard";
 import StudentDashboard from "./pages/StudentDashboard";
-import ProtectedRoute from "./components/PrivateRoute";
+import QuizPage from "./pages/QuizPage";
 
 export default function App() {
-  const location = useLocation();
-  const hideNavbar = ["/login", "/register"].includes(location.pathname);
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const isLoggedIn = Boolean(user?.token);
+
+  const renderLayout = (page) => {
+    // If not logged in → no navbar
+    if (!isLoggedIn) return page;
+
+    // If logged in → show navbar + page
+    return (
+      <div className="min-h-screen flex bg-gray-100">
+        <VerticalNavbar />
+        <main className="flex-1 p-6">{page}</main>
+      </div>
+    );
+  };
 
   return (
-    <div className="min-h-screen flex bg-gray-100">
+    <Routes>
+      {/* ---------- AUTH ---------- */}
+      <Route path="/login" element={renderLayout(<Login />)} />
+      <Route path="/register" element={renderLayout(<Register />)} />
 
-      {/* Sidebar only when logged in */}
-      {!hideNavbar && <VerticalNavbar />}
+      {/* ---------- ROOT REDIRECT ---------- */}
+      <Route
+        path="/"
+        element={
+          isLoggedIn
+            ? user.role === "ADMIN"
+              ? <Navigate to="/admin" />
+              : <Navigate to="/student" />
+            : <Navigate to="/login" />
+        }
+      />
 
-      <main className="flex-1 p-4">
-        <Routes>
+      {/* ---------- STUDENT AREA ---------- */}
+      <Route
+        path="/student"
+        element={
+          renderLayout(
+            <PrivateRoute role="STUDENT">
+              <StudentDashboard />
+            </PrivateRoute>
+          )
+        }
+      />
 
-          {/* Auth pages */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+      <Route
+        path="/courses"
+        element={renderLayout(<CourseList />)}
+      />
 
-          {/* Homepage → Login */}
-          <Route path="/" element={<Navigate to="/login" replace />} />
+      <Route
+        path="/courses/:id"
+        element={renderLayout(<CourseDetail />)}
+      />
 
-          {/* Courses (public browse allowed) */}
-          <Route path="/courses" element={<CourseList />} />
-          <Route path="/courses/:id" element={<CourseDetail />} />
+      <Route
+        path="/quiz/:quizId"
+        element={renderLayout(<QuizPage />)}
+      />
 
-          {/* Dashboards (protected) */}
-          <Route
-            path="/admin"
-            element={
-              <ProtectedRoute role="ADMIN">
-                <AdminDashboard />
-              </ProtectedRoute>
-            }
-          />
+      {/* ---------- ADMIN AREA ---------- */}
+      <Route
+        path="/admin"
+        element={
+          renderLayout(
+            <PrivateRoute role="ADMIN">
+              <AdminDashboard />
+            </PrivateRoute>
+          )
+        }
+      />
 
-          <Route
-            path="/student"
-            element={
-              <ProtectedRoute role="STUDENT">
-                <StudentDashboard />
-              </ProtectedRoute>
-            }
-          />
+      <Route
+        path="/admin/course/new"
+        element={
+          renderLayout(
+            <PrivateRoute role="ADMIN">
+              <CourseForm />
+            </PrivateRoute>
+          )
+        }
+      />
 
-          {/* Catch-all → Login */}
-          <Route path="*" element={<Navigate to="/login" replace />} />
+      <Route
+        path="/admin/course/edit/:id"
+        element={
+          renderLayout(
+            <PrivateRoute role="ADMIN">
+              <CourseForm />
+            </PrivateRoute>
+          )
+        }
+      />
 
-        </Routes>
-      </main>
-    </div>
+      {/* fallback */}
+      <Route path="*" element={<Navigate to="/" />} />
+    </Routes>
   );
 }

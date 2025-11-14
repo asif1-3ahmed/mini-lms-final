@@ -2,10 +2,12 @@ from rest_framework import viewsets, permissions
 from .models import Video
 from .serializers import VideoSerializer
 
-class VideoViewSet(viewsets.ModelViewSet):
-    queryset = Video.objects.all()
-    serializer_class = VideoSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+class IsAdminOrReadOnly(permissions.BasePermission):
+    def has_permission(self, request, view):
+        if request.method in permissions.SAFE_METHODS: return True
+        return request.user.is_authenticated and request.user.role == "ADMIN"
 
-    def perform_create(self, serializer):
-        serializer.save()
+class VideoViewSet(viewsets.ModelViewSet):
+    queryset = Video.objects.all().order_by("-created_at")
+    serializer_class = VideoSerializer
+    permission_classes = [IsAdminOrReadOnly]

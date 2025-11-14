@@ -1,19 +1,16 @@
 from django.db import models
+from apps.users.models import User
 from apps.courses.models import Course
-from django.conf import settings
 
 class Quiz(models.Model):
-    course = models.ForeignKey(Course, related_name="quizzes", on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="quizzes")
     title = models.CharField(max_length=255)
 
 class Question(models.Model):
-    quiz = models.ForeignKey(Quiz, related_name="questions", on_delete=models.CASCADE)
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, related_name="questions")
     text = models.TextField()
-    options = models.JSONField()
-    correct_index = models.IntegerField()
-
-class QuizResult(models.Model):
-    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
-    student = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    score = models.FloatField()
-    taken_at = models.DateTimeField(auto_now_add=True)
+    option_a = models.CharField(max_length=255)
+    option_b = models.CharField(max_length=255)
+    option_c = models.CharField(max_length=255, blank=True)
+    option_d = models.CharField(max_length=255, blank=True)
+    correct = models.CharField(max_length=1)  # 'a','b','c','d'

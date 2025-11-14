@@ -1,27 +1,30 @@
 import React, { useEffect, useState } from "react";
-import API from "../api/axiosInstance";
+import axios from "../api/axiosInstance";
 import { Link } from "react-router-dom";
 
-export default function AdminDashboard(){
-  const [courses,setCourses] = useState([]);
-  useEffect(()=>{ API.get("/courses/").then(r=>setCourses(r.data)).catch(()=>{}); }, []);
+export default function AdminDashboard() {
+  const [courses, setCourses] = useState([]);
+
+  useEffect(() => {
+    axios.get("/courses/").then((res) => setCourses(res.data));
+  }, []);
+
   return (
     <div>
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold">Admin Dashboard</h1>
-        <Link to="/admin/new" className="p-2 bg-green-600 text-white rounded">Create Course</Link>
-      </div>
-      <div className="space-y-3">
-        {courses.map(c=>(
-          <div key={c.id} className="bg-white p-3 rounded shadow flex justify-between">
-            <div>
-              <h3 className="font-semibold">{c.title}</h3>
-              <p className="text-sm">{c.description?.slice(0,100)}</p>
-            </div>
-            <div className="flex items-center gap-2">
-              <Link to={`/admin/edit/${c.id}`} className="p-2 bg-yellow-400 rounded">Edit</Link>
-              <button onClick={async ()=>{ await API.delete(`/courses/${c.id}/`); setCourses(cs=>cs.filter(x=>x.id!==c.id)); }} className="p-2 bg-red-500 text-white rounded">Delete</button>
-            </div>
+      <h1 className="text-3xl font-bold mb-4">Admin Dashboard</h1>
+
+      <Link
+        to="/admin/create-course"
+        className="bg-blue-600 text-white px-4 py-2 rounded"
+      >
+        + Create Course
+      </Link>
+
+      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+        {courses.map((c) => (
+          <div key={c.id} className="p-4 bg-white shadow rounded">
+            <h2 className="font-bold text-xl">{c.title}</h2>
+            <p>{c.description}</p>
           </div>
         ))}
       </div>
