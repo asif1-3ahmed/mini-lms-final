@@ -14,6 +14,7 @@ class UserSerializer(serializers.ModelSerializer):
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
     role = serializers.ChoiceField(choices=User.ROLE_CHOICES, default="student")
+    last_name = serializers.CharField(required=False, allow_blank=True)
 
     class Meta:
         model = User
