@@ -12,9 +12,9 @@ export default function Login() {
     const submit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("/auth/token/", { username, password });
+            const res = await axios.post("auth/token/", { username, password });
             login(res.data);
-            const me = await axios.get("/auth/me/");
+            const me = await axios.get("auth/me/");
             setUser(me.data);
             if (me.data.role === "admin") nav("/admin");
             else nav("/student");

@@ -23,13 +23,13 @@ export default function Register() {
     const submit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("/auth/register/", formData);
-            const res = await axios.post("/auth/token/", {
+            await axios.post("auth/register/", formData);
+            const res = await axios.post("auth/token/", {
                 username: formData.username,
                 password: formData.password,
             });
             login(res.data);
-            const me = await axios.get("/auth/me/");
+            const me = await axios.get("auth/me/");
             setUser(me.data);
             nav("/student");
         } catch (err) {

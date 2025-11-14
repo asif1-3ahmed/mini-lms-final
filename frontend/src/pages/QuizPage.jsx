@@ -9,7 +9,7 @@ export default function QuizPage({ quizId }) {
 
     useEffect(() => {
         if (quizId) {
-            axios.get(`/quizzes/${quizId}/`).then((res) => setQuiz(res.data)).catch(console.error);
+            axios.get(`quizzes/${quizId}/`).then((res) => setQuiz(res.data)).catch(console.error);
         }
     }, [quizId]);
 

@@ -10,7 +10,7 @@ export default function CourseForm() {
   const submit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/courses/", {
+      await axios.post("courses/", {
         title,
         description: desc,
       });

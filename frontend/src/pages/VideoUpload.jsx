@@ -11,7 +11,7 @@ export default function VideoUpload() {
     const [uploading, setUploading] = useState(false);
 
     useEffect(() => {
-        axios.get("/courses/").then((res) => setCourses(res.data.results || res.data)).catch(console.error);
+        axios.get("courses/").then((res) => setCourses(res.data.results || res.data)).catch(console.error);
     }, []);
 
     const upload = () => {
@@ -35,7 +35,7 @@ export default function VideoUpload() {
             },
             async () => {
                 const url = await getDownloadURL(uploadTask.snapshot.ref);
-                await axios.post("/videos/", {
+                await axios.post("videos/", {
                     course: courseId,
                     title,
                     description: desc,

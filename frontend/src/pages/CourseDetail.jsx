@@ -8,7 +8,7 @@ export default function CourseDetail() {
   const [course, setCourse] = useState(null);
 
   useEffect(() => {
-    axios.get(`/courses/${id}/`).then(res => setCourse(res.data)).catch(console.error);
+    axios.get(`courses/${id}/`).then(res => setCourse(res.data)).catch(console.error);
   }, [id]);
 
   if (!course) return <div className="p-6">Loading...</div>;
