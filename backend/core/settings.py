@@ -120,10 +120,12 @@ SIMPLE_JWT = {
 }
 
 # CORS Configuration
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "http://localhost:3000",
-]
+# Allow origins from environment variable `CORS_ALLOWED_ORIGINS` (comma-separated).
+# Defaults include common local dev ports and the Firebase hosting domains used by the frontend.
+CORS_ALLOWED_ORIGINS = os.getenv(
+    "CORS_ALLOWED_ORIGINS",
+    "http://localhost:5173,http://localhost:3000,https://mini-lms-a5e66.web.app,https://mini-lms-a5e66.firebaseapp.com",
+).split(",")
 
 CORS_ALLOW_CREDENTIALS = True
 
