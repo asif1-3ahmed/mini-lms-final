@@ -121,20 +121,24 @@ SIMPLE_JWT = {
 
 # CORS Configuration
 # Allow all origins in production (will restrict later via env var if needed)
-CORS_ALLOW_ALL_ORIGINS = True
+# CORS Configuration
+CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOW_CREDENTIALS = True
 
-# Also keep explicit list for reference
-CORS_ALLOWED_ORIGINS = os.getenv(
-    "CORS_ALLOWED_ORIGINS",
-    "http://localhost:5173,http://localhost:3000,https://mini-lms-a5e66.web.app,https://mini-lms-a5e66.firebaseapp.com",
-).split(",")
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://localhost:3000",
+    "https://mini-lms-a5e66.web.app",
+    "https://mini-lms-a5e66.firebaseapp.com",
+    "https://mini-lms-final.web.app",  # if this is your current Firebase hosting
+    "https://mini-lms-final.firebaseapp.com",
+]
 
-# Trust the deployed frontend origins for CSRF (needed when making POSTs from the browser)
 CSRF_TRUSTED_ORIGINS = [
     "https://mini-lms-a5e66.web.app",
     "https://mini-lms-a5e66.firebaseapp.com",
+    "https://mini-lms-final.web.app",
+    "https://mini-lms-final.firebaseapp.com",
 ]
-
 # Custom User Model
 AUTH_USER_MODEL = "accounts.User"
