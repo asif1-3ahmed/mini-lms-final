@@ -22,7 +22,10 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         role = validated_data.pop("role", "student")
-        user = User.objects.create_user(**validated_data)
-        user.role = role
+        password = validated_data.pop("password")   # extract password
+        user = User(**validated_data)               # create user object without password
+        user.set_password(password)                 # hash password manually
+        user.role = role                            # assign role
         user.save()
         return user
+
