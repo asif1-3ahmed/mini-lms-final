@@ -129,5 +129,11 @@ CORS_ALLOWED_ORIGINS = os.getenv(
 
 CORS_ALLOW_CREDENTIALS = True
 
+# Trust the deployed frontend origins for CSRF (needed when making POSTs from the browser)
+CSRF_TRUSTED_ORIGINS = [
+    "https://mini-lms-a5e66.web.app",
+    "https://mini-lms-a5e66.firebaseapp.com",
+]
+
 # Custom User Model
 AUTH_USER_MODEL = "accounts.User"
