@@ -1,8 +1,18 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -e
 
-echo "Running migrations..."
+# enter backend
+cd backend
+
+# install python deps
+pip install --upgrade pip
+pip install --no-cache-dir -r requirements.txt
+
+# run migrations (safe: --noinput)
 python manage.py migrate --noinput
 
-echo "Migrations completed. Starting gunicorn..."
-exec gunicorn core.wsgi --log-file - "$@"
+# collect static (optional, won't fail if not configured)
+python manage.py collectstatic --noinput || true
+
+# start gunicorn on Railway's $PORT
+exec gunicorn core.wsgi:application --bind 0.0.0.0:${PORT:-8000} --workers 3
