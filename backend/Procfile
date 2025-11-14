@@ -1,1 +1,2 @@
-web: python wsgi_startup.py
+release: python manage.py migrate --noinput
+web: gunicorn core.wsgi --log-file - --bind 0.0.0.0:8000 --workers 3
