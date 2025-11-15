@@ -6,3 +6,4 @@ python-dotenv
 gunicorn
 django-cors-headers
 dj-database-url
+whitenoise>=6.6.0
