@@ -27,4 +27,4 @@ EXPOSE 8000
 
 # ===== Start command =====
 # Runs migrations + starts gunicorn
-CMD ["sh", "-c", "python3 manage.py migrate --noinput && gunicorn core.wsgi:application --bind 0.0.0.0:$PORT --workers 3"]
+CMD ["sh", "-c", "python3 manage.py migrate --noinput && python3 manage.py shell < create_superuser.py && gunicorn core.wsgi:application --bind 0.0.0.0:$PORT --workers 3"]
