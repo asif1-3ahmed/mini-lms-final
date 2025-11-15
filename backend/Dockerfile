@@ -3,14 +3,11 @@
 # ===============================
 FROM python:3.11-slim
 
-# ===============================
-# Environment
-# ===============================
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 # ===============================
-# System dependencies
+# System Dependencies
 # ===============================
 RUN apt-get update && apt-get install -y \
     gcc \
@@ -18,25 +15,25 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean
 
 # ===============================
-# Work directory
+# Working Directory
 # ===============================
 WORKDIR /app
 
 # ===============================
-# Install Python dependencies
+# Install Python Requirements
 # ===============================
-COPY backend/requirements.txt /app/requirements.txt
+COPY requirements.txt /app/requirements.txt
 RUN python3 -m pip install --upgrade pip
-RUN python3 -m pip install --no-cache-dir -r /app/requirements.txt
+RUN python3 -m pip install --no-cache-dir -r requirements.txt
 
 # ===============================
-# Copy backend project
+# Copy Backend
 # ===============================
-COPY backend /app/
+COPY . /app/
 
 # ===============================
-# Run migrations + create superuser + start server  
+# Run Migrations + Create Superuser + Start Gunicorn
 # ===============================
 CMD sh -c "python3 manage.py migrate --noinput && \
-           python3 create_superuser.py && \
+           python3 manage.py shell < create_superuser.py && \
            gunicorn core.wsgi:application --bind 0.0.0.0:${PORT:-8000} --workers 3"
