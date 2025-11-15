@@ -23,7 +23,7 @@ WORKDIR /app
 # Install Python Requirements
 # ===============================
 # because Dockerfile is inside backend/
-COPY requirements.txt /app/requirements.txt
+COPY backend/requirements.txt /app/requirements.txt
 
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install --no-cache-dir -r /app/requirements.txt
