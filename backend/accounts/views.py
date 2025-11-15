@@ -27,3 +27,22 @@ class MeView(generics.RetrieveAPIView):
 
     def get_object(self):
         return self.request.user
+class PromoteToAdminView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request, user_id):
+        if request.user.role != "admin":
+            return Response({"error": "Not allowed"}, status=403)
+
+        try:
+            user = User.objects.get(id=user_id)
+            user.role = "admin"
+            user.save()
+            return Response({"message": "User promoted to admin"})
+        except User.DoesNotExist:
+            return Response({"error": "User not found"}, status=404)
+            
+class UserListView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]
