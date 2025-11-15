@@ -132,6 +132,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://mini-lms-a5e66.firebaseapp.com",
     "https://mini-lms-final.web.app",  # if this is your current Firebase hosting
     "https://mini-lms-final.firebaseapp.com",
+    "https://mini-lms-final-production.up.railway.app",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -139,6 +140,8 @@ CSRF_TRUSTED_ORIGINS = [
     "https://mini-lms-a5e66.firebaseapp.com",
     "https://mini-lms-final.web.app",
     "https://mini-lms-final.firebaseapp.com",
+    "https://mini-lms-final-production.up.railway.app",
+
 ]
 # Custom User Model
 AUTH_USER_MODEL = "accounts.User"
