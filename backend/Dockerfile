@@ -35,7 +35,7 @@ RUN python3 -m pip install --no-cache-dir -r /app/requirements.txt
 COPY backend /app/
 
 # ===============================
-# Run migrations + create superuser + start server
+# Run migrations + create superuser + start server  
 # ===============================
 CMD sh -c "python3 manage.py migrate --noinput && \
            python3 create_superuser.py && \
