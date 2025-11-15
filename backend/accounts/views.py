@@ -2,6 +2,7 @@ from rest_framework import generics, permissions, status
 from rest_framework.response import Response
 from .serializers import RegisterSerializer, UserSerializer
 from django.contrib.auth import get_user_model
+from rest_framework.views import APIView 
 
 User = get_user_model()
 
@@ -41,7 +42,7 @@ class PromoteToAdminView(APIView):
             return Response({"message": "User promoted to admin"})
         except User.DoesNotExist:
             return Response({"error": "User not found"}, status=404)
-            
+
 class UserListView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
