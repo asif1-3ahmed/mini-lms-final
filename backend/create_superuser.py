@@ -1,16 +1,27 @@
-# backend/create_superuser.py
 import os
 import django
+
+# Tell Django where settings.py is
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings")
+
+# Load Django
+django.setup()
+
 from django.contrib.auth import get_user_model
+
 User = get_user_model()
 
-import os
-USERNAME = os.getenv("ADMIN_USERNAME", "admin")
-EMAIL = os.getenv("ADMIN_EMAIL", "admin@example.com")
-PASSWORD = os.getenv("ADMIN_PASSWORD", "Admin@12345")
+ADMIN_EMAIL = "admin@example.com"
+ADMIN_USERNAME = "admin"
+ADMIN_PASSWORD = "admin123"
 
-if not User.objects.filter(username=USERNAME).exists():
-    User.objects.create_superuser(username=USERNAME, email=EMAIL, password=PASSWORD)
-    print("Superuser created:", USERNAME)
+# Create superuser only if not exists
+if not User.objects.filter(username=ADMIN_USERNAME).exists():
+    User.objects.create_superuser(
+        username=ADMIN_USERNAME,
+        email=ADMIN_EMAIL,
+        password=ADMIN_PASSWORD
+    )
+    print("Superuser created!")
 else:
-    print("Superuser already exists:", USERNAME)
+    print("Superuser already exists, skipping.")
