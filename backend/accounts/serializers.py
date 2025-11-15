@@ -3,7 +3,6 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
-
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -11,19 +10,18 @@ class UserSerializer(serializers.ModelSerializer):
         read_only_fields = ("id", "role")
 
 
-# Remove admin option, force student
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
+    role = serializers.ChoiceField(choices=User.ROLE_CHOICES, default="student")
+    last_name = serializers.CharField(required=False, allow_blank=True)
 
     class Meta:
         model = User
-        fields = ("username", "email", "password", "first_name", "last_name")
-
+        fields = ("username", "email", "password", "first_name", "last_name", "role")
 
     def create(self, validated_data):
-    user = User.objects.create_user(**validated_data)
-    user.role = "student"  # always student
-    user.save()
-    return user
-
-
+        role = validated_data.pop("role", "student")
+        user = User.objects.create_user(**validated_data)
+        user.role = role
+        user.save()
+        return user
