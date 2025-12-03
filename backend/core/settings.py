@@ -59,19 +59,19 @@ TEMPLATES = [
 WSGI_APPLICATION = "core.wsgi.application"
 
 # ============================
-# DATABASE
+# DATABASE (POSTGRESQL ONLY)
 # ============================
 
-DATABASE_URL = os.getenv("DATABASE_URL")
-if DATABASE_URL:
-    DATABASES = {"default": dj_database_url.parse(DATABASE_URL)}
-else:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
-        }
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "lmsdb",
+        "USER": "postgres",
+        "PASSWORD": "bhargavi8847",
+        "HOST": "localhost",
+        "PORT": "5432",
     }
+}
 
 # ============================
 # PASSWORD VALIDATORS
@@ -110,9 +110,10 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
-    "DEFAULT_PERMISSION_CLASSES": (
-        "rest_framework.permissions.IsAuthenticated",
-    ),
+   "DEFAULT_PERMISSION_CLASSES": (
+    "rest_framework.permissions.AllowAny",
+),
+
 }
 
 SIMPLE_JWT = {
@@ -147,7 +148,7 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 # ============================
-# MOBILE LOGIN FIX (important)
+# MOBILE LOGIN FIX
 # ============================
 
 SESSION_COOKIE_SECURE = True
@@ -160,3 +161,5 @@ CSRF_COOKIE_SAMESITE = "None"
 # ============================
 
 AUTH_USER_MODEL = "accounts.User"
+
+print("DEFAULT_PERMISSION_CLASSES:", REST_FRAMEWORK["DEFAULT_PERMISSION_CLASSES"])

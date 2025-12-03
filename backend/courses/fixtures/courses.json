@@ -1,0 +1,751 @@
+,
+{
+ "model": "courses.course",
+ "pk": 4,
+ "fields": {
+   "title": "Java Programming",
+   "description": "Core Java with OOP concepts",
+   "duration": "6 weeks",
+   "category": "Programming",
+   "skills": ["Java", "OOP"],
+   "modules": ["Classes", "Objects", "Inheritance"],
+   "career_paths": ["Java Developer", "Android Developer"],
+   "roadmap": ["Basics", "OOP", "Mini Projects"],
+   "faq": ["Is Java tough? No"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 5,
+ "fields": {
+   "title": "C & C++ Fundamentals",
+   "description": "Pointer, memory, DSA ready",
+   "duration": "7 weeks",
+   "category": "Programming",
+   "skills": ["C", "C++", "Pointers"],
+   "modules": ["Memory", "Structures"],
+   "career_paths": ["Software Engineer"],
+   "roadmap": ["Syntax", "Pointers", "STL"],
+   "faq": ["Needed for DSA? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 6,
+ "fields": {
+   "title": "Data Science with Pandas",
+   "description": "Data analysis using pandas",
+   "duration": "4 weeks",
+   "category": "Data",
+   "skills": ["Pandas", "NumPy"],
+   "modules": ["Cleaning", "EDA"],
+   "career_paths": ["Data Analyst"],
+   "roadmap": ["Data Cleaning", "Charts"],
+   "faq": ["Math needed? Basic"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 7,
+ "fields": {
+   "title": "Machine Learning Basics",
+   "description": "Intro to ML algorithms",
+   "duration": "6 weeks",
+   "category": "AI",
+   "skills": ["ML", "Python"],
+   "modules": ["Regression", "Classification"],
+   "career_paths": ["ML Engineer"],
+   "roadmap": ["Theory", "Projects"],
+   "faq": ["Coding heavy? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 8,
+ "fields": {
+   "title": "Deep Learning with TensorFlow",
+   "description": "Neural networks basics",
+   "duration": "8 weeks",
+   "category": "AI",
+   "skills": ["TensorFlow", "DL"],
+   "modules": ["ANN", "CNN"],
+   "career_paths": ["AI Engineer"],
+   "roadmap": ["NN Theory", "Vision"],
+   "faq": ["GPU needed? Optional"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 9,
+ "fields": {
+   "title": "AWS Cloud Practitioner",
+   "description": "Start with AWS Cloud",
+   "duration": "5 weeks",
+   "category": "Cloud",
+   "skills": ["AWS"],
+   "modules": ["EC2", "S3"],
+   "career_paths": ["Cloud Engineer", "DevOps"],
+   "roadmap": ["Core Services", "IAM"],
+   "faq": ["Free tier? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 10,
+ "fields": {
+   "title": "Azure Basics",
+   "description": "Intro to Azure cloud",
+   "duration": "4 weeks",
+   "category": "Cloud",
+   "skills": ["Azure"],
+   "modules": ["VM", "Storage"],
+   "career_paths": ["Cloud Engineer"],
+   "roadmap": ["Services"],
+   "faq": ["Certification? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 11,
+ "fields": {
+   "title": "Cybersecurity Fundamentals",
+   "description": "Security basics",
+   "duration": "6 weeks",
+   "category": "Security",
+   "skills": ["Networks", "Security"],
+   "modules": ["Firewalls"],
+   "career_paths": ["Cybersecurity Analyst"],
+   "roadmap": ["Threats"],
+   "faq": ["Legal? Ethical? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 12,
+ "fields": {
+   "title": "Ethical Hacking",
+   "description": "Penetration testing basics",
+   "duration": "8 weeks",
+   "category": "Security",
+   "skills": ["Kali Linux", "Nmap"],
+   "modules": ["Recon"],
+   "career_paths": ["Pen Tester"],
+   "roadmap": ["Tools"],
+   "faq": ["Is it legal? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 13,
+ "fields": {
+   "title": "DevOps Foundations",
+   "description": "DevOps CI/CD",
+   "duration": "6 weeks",
+   "category": "DevOps",
+   "skills": ["CI/CD"],
+   "modules": ["Jenkins", "Docker"],
+   "career_paths": ["DevOps Engineer"],
+   "roadmap": ["Pipeline"],
+   "faq": ["Experience? Not required"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 14,
+ "fields": {
+   "title": "Docker & Containers",
+   "description": "Learn docker",
+   "duration": "3 weeks",
+   "category": "DevOps",
+   "skills": ["Docker"],
+   "modules": ["Commands"],
+   "career_paths": ["DevOps"],
+   "roadmap": ["Containers"],
+   "faq": ["Needed? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 15,
+ "fields": {
+   "title": "Kubernetes Basics",
+   "description": "Orchestration",
+   "duration": "4 weeks",
+   "category": "DevOps",
+   "skills": ["K8s"],
+   "modules": ["Pods"],
+   "career_paths": ["DevOps"],
+   "roadmap": ["Deploy"],
+   "faq": ["Tough? Medium"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 16,
+ "fields": {
+   "title": "Figma UI/UX",
+   "description": "Design prototypes using figma",
+   "duration": "2 weeks",
+   "category": "Design",
+   "skills": ["Figma"],
+   "modules": ["Prototyping"],
+   "career_paths": ["UI/UX Designer"],
+   "roadmap": ["Wireframes", "Components"],
+   "faq": ["Free? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 17,
+ "fields": {
+   "title": "SQL Database",
+   "description": "Database basics & queries",
+   "duration": "5 weeks",
+   "category": "DB",
+   "skills": ["SQL"],
+   "modules": ["Joins"],
+   "career_paths": ["DB Developer"],
+   "roadmap": ["Core SQL"],
+   "faq": ["RDBMS? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 18,
+ "fields": {
+   "title": "PostgreSQL Deep Dive",
+   "description": "PgSQL advanced",
+   "duration": "6 weeks",
+   "category": "DB",
+   "skills": ["PostgreSQL"],
+   "modules": ["Indexing"],
+   "career_paths": ["DB Engineer"],
+   "roadmap": ["Performance"],
+   "faq": ["Admin? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 19,
+ "fields": {
+   "title": "NoSQL with MongoDB",
+   "description": "Learn MongoDB",
+   "duration": "4 weeks",
+   "category": "DB",
+   "skills": ["MongoDB"],
+   "modules": ["Collections"],
+   "career_paths": ["Backend"],
+   "roadmap": ["CRUD"],
+   "faq": ["Schema-less? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 20,
+ "fields": {
+   "title": "DSA with Python",
+   "description": "Prepare for interviews",
+   "duration": "10 weeks",
+   "category": "DSA",
+   "skills": ["Python", "DSA"],
+   "modules": ["Stacks", "Queues"],
+   "career_paths": ["SDE"],
+   "roadmap": ["Arrays", "Linked Lists", "Trees"],
+   "faq": ["Important? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 21,
+ "fields": {
+   "title": "Operating System Concepts",
+   "description": "OS basics",
+   "duration": "5 weeks",
+   "category": "CS",
+   "skills": ["OS"],
+   "modules": ["Processes"],
+   "career_paths": ["SDE"],
+   "roadmap": ["Process Management"],
+   "faq": ["Theory? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 22,
+ "fields": {
+   "title": "Computer Networks",
+   "description": "Net basics",
+   "duration": "6 weeks",
+   "category": "CS",
+   "skills": ["Networking"],
+   "modules": ["Protocols"],
+   "career_paths": ["Network Engineer"],
+   "roadmap": ["Layers"],
+   "faq": ["TCP/IP? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 23,
+ "fields": {
+   "title": "Blockchain Advanced",
+   "description": "Smart contracts",
+   "duration": "8 weeks",
+   "category": "Blockchain",
+   "skills": ["Solidity"],
+   "modules": ["Ethereum"],
+   "career_paths": ["Blockchain Dev"],
+   "roadmap": ["DApps"],
+   "faq": ["Crypto? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 24,
+ "fields": {
+   "title": "Flutter App Dev",
+   "description": "Mobile apps",
+   "duration": "6 weeks",
+   "category": "Mobile",
+   "skills": ["Flutter"],
+   "modules": ["Widgets"],
+   "career_paths": ["Mobile Dev"],
+   "roadmap": ["UI", "State"],
+   "faq": ["Dart? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 25,
+ "fields": {
+   "title": "AI Foundations",
+   "description": "AI basics",
+   "duration": "7 weeks",
+   "category": "AI",
+   "skills": ["AI"],
+   "modules": ["Agents"],
+   "career_paths": ["AI Engineer"],
+   "roadmap": ["LLMs"],
+   "faq": ["Future? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 26,
+ "fields": {
+   "title": "Large Language Models",
+   "description": "LLM intro",
+   "duration": "4 weeks",
+   "category": "AI",
+   "skills": ["Transformers"],
+   "modules": ["Attention"],
+   "career_paths": ["NLP Engineer"],
+   "roadmap": ["Theory"],
+   "faq": ["Math? Optional"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 27,
+ "fields": {
+   "title": "React + Django Fullstack",
+   "description": "Fullstack guide",
+   "duration": "12 weeks",
+   "category": "Fullstack",
+   "skills": ["React", "Django"],
+   "modules": ["Frontend", "Backend"],
+   "career_paths": ["Full Stack"],
+   "roadmap": ["Build"],
+   "faq": ["Deploy? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 28,
+ "fields": {
+   "title": "Linux Basics",
+   "description": "Learn linux",
+   "duration": "3 weeks",
+   "category": "OS",
+   "skills": ["Linux"],
+   "modules": ["Terminal"],
+   "career_paths": ["DevOps"],
+   "roadmap": ["CLI"],
+   "faq": ["Commands? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 29,
+ "fields": {
+   "title": "Jenkins CI/CD",
+   "description": "Automation",
+   "duration": "4 weeks",
+   "category": "DevOps",
+   "skills": ["Jenkins"],
+   "modules": ["Pipelines"],
+   "career_paths": ["DevOps"],
+   "roadmap": ["Jobs"],
+   "faq": ["Tool? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 30,
+ "fields": {
+   "title": "Git & GitHub",
+   "description": "Version control",
+   "duration": "2 weeks",
+   "category": "Tools",
+   "skills": ["Git"],
+   "modules": ["Push", "Pull"],
+   "career_paths": ["All Dev"],
+   "roadmap": ["Basics"],
+   "faq": ["Important? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 31,
+ "fields": {
+   "title": "TypeScript for Beginners",
+   "description": "TS basics",
+   "duration": "5 weeks",
+   "category": "Programming",
+   "skills": ["TypeScript"],
+   "modules": ["Types"],
+   "career_paths": ["Frontend"],
+   "roadmap": ["TS"],
+   "faq": ["Is it useful? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 32,
+ "fields": {
+   "title": "Next.js Bootcamp",
+   "description": "Next basics",
+   "duration": "6 weeks",
+   "category": "Frontend",
+   "skills": ["Next.js"],
+   "modules": ["SSR"],
+   "career_paths": ["Frontend"],
+   "roadmap": ["App"],
+   "faq": ["React needed? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 33,
+ "fields": {
+   "title": "API Development DRF",
+   "description": "DRF APIs",
+   "duration": "6 weeks",
+   "category": "Backend",
+   "skills": ["DRF"],
+   "modules": ["Serializers"],
+   "career_paths": ["API Dev"],
+   "roadmap": ["Auth"],
+   "faq": ["Django needed? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 34,
+ "fields": {
+   "title": "GraphQL Basics",
+   "description": "Learn graphql",
+   "duration": "3 weeks",
+   "category": "API",
+   "skills": ["GraphQL"],
+   "modules": ["Queries"],
+   "career_paths": ["Backend"],
+   "roadmap": ["Schema"],
+   "faq": ["REST alternative? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 35,
+ "fields": {
+   "title": "Tailwind CSS",
+   "description": "Utility based CSS",
+   "duration": "2 weeks",
+   "category": "Design",
+   "skills": ["Tailwind"],
+   "modules": ["Flex"],
+   "career_paths": ["Frontend"],
+   "roadmap": ["UI"],
+   "faq": ["CSS needed? Basic"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 36,
+ "fields": {
+   "title": "Node.js Basics",
+   "description": "Learn Node",
+   "duration": "4 weeks",
+   "category": "Backend",
+   "skills": ["Node.js"],
+   "modules": ["Event loop"],
+   "career_paths": ["Backend Dev"],
+   "roadmap": ["Express"],
+   "faq": ["Async? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 37,
+ "fields": {
+   "title": "Express.js",
+   "description": "Express server",
+   "duration": "3 weeks",
+   "category": "Backend",
+   "skills": ["Express"],
+   "modules": ["Routing"],
+   "career_paths": ["Backend"],
+   "roadmap": ["Build API"],
+   "faq": ["Middleware? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 38,
+ "fields": {
+   "title": "Computer Architecture",
+   "description": "CA basics",
+   "duration": "4 weeks",
+   "category": "CS",
+   "skills": ["CA"],
+   "modules": ["ALU"],
+   "career_paths": ["Core CS"],
+   "roadmap": ["Basics"],
+   "faq": ["Theory? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 39,
+ "fields": {
+   "title": "Microservices Basics",
+   "description": "Microservices guide",
+   "duration": "5 weeks",
+   "category": "Backend",
+   "skills": ["Microservices"],
+   "modules": ["REST"],
+   "career_paths": ["Backend"],
+   "roadmap": ["Services"],
+   "faq": ["Useful? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 40,
+ "fields": {
+   "title": "AR/VR Intro",
+   "description": "AR VR",
+   "duration": "6 weeks",
+   "category": "XR",
+   "skills": ["Unity"],
+   "modules": ["Scene"],
+   "career_paths": ["XR Dev"],
+   "roadmap": ["Unity"],
+   "faq": ["Hardware needed? No"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 41,
+ "fields": {
+   "title": "Unity Game Dev",
+   "description": "Start unity",
+   "duration": "8 weeks",
+   "category": "Game",
+   "skills": ["Unity"],
+   "modules": ["Physics"],
+   "career_paths": ["Game Dev"],
+   "roadmap": ["Build"],
+   "faq": ["C# needed? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 42,
+ "fields": {
+   "title": "Blender 3D",
+   "description": "Learn blender",
+   "duration": "6 weeks",
+   "category": "3D",
+   "skills": ["Blender"],
+   "modules": ["3D Basics"],
+   "career_paths": ["3D Artist"],
+   "roadmap": ["Model"],
+   "faq": ["GPU? Optional"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 43,
+ "fields": {
+   "title": "Big Data Hadoop",
+   "description": "Learn big data",
+   "duration": "7 weeks",
+   "category": "Data",
+   "skills": ["Hadoop"],
+   "modules": ["HDFS"],
+   "career_paths": ["Big Data Eng"],
+   "roadmap": ["Cluster"],
+   "faq": ["Expensive? No"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 44,
+ "fields": {
+   "title": "Spark Basics",
+   "description": "Apache spark",
+   "duration": "5 weeks",
+   "category": "Data",
+   "skills": ["Spark"],
+   "modules": ["RDD"],
+   "career_paths": ["Big Data"],
+   "roadmap": ["Learn"],
+   "faq": ["Scala? Optional"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 45,
+ "fields": {
+   "title": "Flask for Beginners",
+   "description": "Learn flask",
+   "duration": "3 weeks",
+   "category": "Backend",
+   "skills": ["Flask"],
+   "modules": ["Basics"],
+   "career_paths": ["Backend"],
+   "roadmap": ["Routes"],
+   "faq": ["Python? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 46,
+ "fields": {
+   "title": "FastAPI Basics",
+   "description": "FastAPI",
+   "duration": "4 weeks",
+   "category": "Backend",
+   "skills": ["FastAPI"],
+   "modules": ["Endpoints"],
+   "career_paths": ["API Dev"],
+   "roadmap": ["Docs"],
+   "faq": ["Async support? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 47,
+ "fields": {
+   "title": "DSA with Java",
+   "description": "DSA",
+   "duration": "9 weeks",
+   "category": "DSA",
+   "skills": ["Java"],
+   "modules": ["Stacks"],
+   "career_paths": ["SDE"],
+   "roadmap": ["Learn", "Practice"],
+   "faq": ["Important? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 48,
+ "fields": {
+   "title": "Interview Prep",
+   "description": "Placement",
+   "duration": "5 weeks",
+   "category": "Career"],
+   "roadmap": ["Mock Interviews"],
+   "faq": ["For freshers? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 49,
+ "fields": {
+   "title": "Agile Scrum",
+   "description": "Scrum guide",
+   "duration": "3 weeks",
+   "category": "Management",
+   "skills": ["Agile"],
+   "modules": ["Scrum"],
+   "career_paths": ["Product"],
+   "roadmap": ["Basics"],
+   "faq": ["Useful? Yes"],
+   "created_by": null
+ }
+},
+{
+ "model": "courses.course",
+ "pk": 50,
+ "fields": {
+   "title": "Software Testing",
+   "description": "Test apps",
+   "duration": "4 weeks",
+   "category": "QA",
+   "skills": ["Testing"],
+   "modules": ["Selenium"],
+   "career_paths": ["QA"],
+   "roadmap": ["Learn"],
+   "faq": ["Coding? Optional"],
+   "created_by": null
+ }
+}
+

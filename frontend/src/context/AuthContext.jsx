@@ -3,39 +3,42 @@ import axios from "../api/axios";
 
 export const AuthContext = createContext();
 
-export function AuthProvider({ children }) {
-    const [user, setUser] = useState(null);
+export function AuthContextProvider({ children }) {
+  const [user, setUser] = useState(null);
 
-    useEffect(() => {
-        const load = async () => {
-            const token = localStorage.getItem("access_token");
-            if (token) {
-                try {
-                    const { data } = await axios.get("/auth/me/");
-                    setUser(data);
-                } catch (err) {
-                    console.error(err);
-                    setUser(null);
-                }
-            }
-        };
-        load();
-    }, []);
+  const login = (data) => {
+    localStorage.setItem("access", data.access);
+    localStorage.setItem("refresh", data.refresh);
+  };
 
-    const login = (tokens) => {
-        localStorage.setItem("access_token", tokens.access);
-        localStorage.setItem("refresh_token", tokens.refresh);
-    };
+  const logout = () => {
+    localStorage.clear();
+    setUser(null);
+  };
 
-    const logout = () => {
-        localStorage.removeItem("access_token");
-        localStorage.removeItem("refresh_token");
-        setUser(null);
-    };
+  // Auto-load user if token exists (page refresh)
+  useEffect(() => {
+    const token = localStorage.getItem("access");
+    if (token) {
+      fetchUser();
+    }
+  }, []);
 
-    return (
-        <AuthContext.Provider value={{ user, setUser, login, logout }}>
-            {children}
-        </AuthContext.Provider>
-    );
+  const fetchUser = async () => {
+    try {
+      const res = await axios.get("/api/auth/me/");
+      setUser(res.data);
+    } catch (err) {
+      logout();
+    }
+  };
+
+  return (
+    <AuthContext.Provider value={{ user, setUser, login, logout, fetchUser }}>
+      {children}
+    </AuthContext.Provider>
+  );
 }
+
+// ✅ Named export constant that matches your main.jsx
+export const AuthProvider = AuthContextProvider;

@@ -1,15 +1,17 @@
+// src/api/axios.js
 import axios from "axios";
 
-const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8000/api";
-
-const instance = axios.create({
-    baseURL: API_BASE,
+const api = axios.create({
+  baseURL: "http://localhost:8000", // Django root
 });
 
-instance.interceptors.request.use((config) => {
-    const token = localStorage.getItem("access_token");
-    if (token) config.headers["Authorization"] = `Bearer ${token}`;
-    return config;
+// Auto attach token if exists
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("access");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
 });
 
-export default instance;
+export default api;

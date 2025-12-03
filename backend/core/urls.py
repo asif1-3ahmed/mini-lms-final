@@ -1,17 +1,24 @@
 from django.contrib import admin
 from django.urls import path, include
-from django.http import JsonResponse
-from django.views.decorators.http import require_http_methods
+from rest_framework.routers import DefaultRouter
+from courses.views import CourseViewSet, VideoViewSet
+from accounts.views import MyTokenObtainPairView, current_user  # 👈 create this view next
 
-@require_http_methods(["GET"])
-def health_check(request):
-    """Health check endpoint — no auth required"""
-    return JsonResponse({"status": "ok", "message": "Backend is running"})
+# ✅ Router setup
+router = DefaultRouter()
+router.register(r"courses", CourseViewSet, basename="course")
+router.register(r"videos", VideoViewSet, basename="video")
 
 urlpatterns = [
-    path("health/", health_check, name="health"),
-    path("admin/", admin.site.urls),
+    path("admin/", admin.site.urls),    # Django admin
+    path("api/", include(router.urls)), # Rest API endpoints
+
+    # ✅ AUTH APIs for login
+    path("api/auth/token/", MyTokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("api/auth/me/", current_user, name="current-user"),
+
+    # ✅ React will use this to load courses
+   
     path("api/auth/", include("accounts.urls")),
-    path("api/", include("courses.urls")),
-    path("api/", include("quizzes.urls")),
+
 ]

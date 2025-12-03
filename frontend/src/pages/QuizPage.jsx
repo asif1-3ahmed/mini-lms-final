@@ -1,68 +1,61 @@
 import React, { useEffect, useState } from "react";
 import axios from "../api/axios";
+import { useParams } from "react-router-dom";
 
-export default function QuizPage({ quizId }) {
-    const [quiz, setQuiz] = useState(null);
-    const [answers, setAnswers] = useState({});
-    const [submitted, setSubmitted] = useState(false);
-    const [score, setScore] = useState(0);
+export default function QuizPage() {
+  const { id } = useParams();
+  const [questions, setQuestions] = useState([]);
+  const [answers, setAnswers] = useState({});
 
-    useEffect(() => {
-        if (quizId) {
-            axios.get(`quizzes/${quizId}/`).then((res) => setQuiz(res.data)).catch(console.error);
-        }
-    }, [quizId]);
+  useEffect(() => {
+    axios.get(`/api/courses/${id}/quiz/student`)
+      .then(res => setQuestions(res.data))
+      .catch(err => console.error(err));
+  }, [id]);
 
-    const submit = () => {
-        if (!quiz) return;
-        let s = 0;
-        quiz.questions.forEach((q) => {
-            if ((answers[q.id] || "") === q.correct_option) s++;
-        });
-        setScore(s);
-        setSubmitted(true);
-    };
+  const handleSelect = (qId, optionIndex) => {
+    setAnswers(prev => ({ ...prev, [qId]: optionIndex }));
+  };
 
-    if (!quiz) return <div className="p-6">Loading...</div>;
+  const submitQuiz = () => {
+    console.log("Student answers:", answers);
+    alert("Quiz submitted!");
+  };
 
-    return (
-        <div className="p-6 max-w-2xl">
-            <h2 className="text-lg font-bold mb-4">{quiz.title}</h2>
-            {quiz.questions.map((q) => (
-                <div key={q.id} className="mb-4 p-4 border rounded">
-                    <p className="font-semibold mb-2">{q.text}</p>
-                    {["a", "b", "c", "d"].map((opt) =>
-                        q[`option_${opt}`] ? (
-                            <label key={opt} className="block mb-2">
-                                <input
-                                    type="radio"
-                                    name={`q${q.id}`}
-                                    value={opt}
-                                    onChange={() => setAnswers({ ...answers, [q.id]: opt })}
-                                    disabled={submitted}
-                                    className="mr-2"
-                                />
-                                {q[`option_${opt}`]}
-                            </label>
-                        ) : null
-                    )}
-                </div>
-            ))}
-            {!submitted && (
-                <button
-                    className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-                    onClick={submit}
-                >
-                    Submit
-                </button>
-            )}
-            {submitted && (
-                <div className="mt-4 p-4 bg-blue-100 rounded">
-                    <p className="text-lg font-semibold">
-                        Score: {score} / {quiz.questions.length}
-                    </p>
-                </div>
-            )}
+  return (
+    <div style={{ padding: 20 }}>
+      <h1 style={{ fontSize: 26, marginBottom: 20 }}>Quiz</h1>
+
+      {questions.map((q, idx) => (
+        <div key={q.id} style={{ marginBottom: 20 }}>
+          <h3>{idx + 1}. {q.question}</h3>
+          {q.options.map((opt, i) => (
+            <label key={i} style={{ display: "block", marginTop: 6 }}>
+              <input
+                type="radio"
+                name={`q-${q.id}`}
+                onChange={() => handleSelect(q.id, i)}
+              />{" "}
+              {opt}
+            </label>
+          ))}
         </div>
-    );
+      ))}
+
+      <button
+        onClick={submitQuiz}
+        style={{
+          background: "#0b78d1",
+          color: "white",
+          padding: "10px 18px",
+          borderRadius: 10,
+          cursor: "pointer",
+          fontWeight: 700,
+          marginTop: 20
+        }}
+      >
+        Submit Quiz
+      </button>
+    </div>
+  );
 }
