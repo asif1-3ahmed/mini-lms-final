@@ -1,3 +1,4 @@
+// src/pages/VideoUpload.jsx
 import React, { useState, useEffect } from "react";
 import { storage, ref, uploadBytesResumable, getDownloadURL } from "../firebase";
 import axios from "../api/axios";
@@ -10,8 +11,11 @@ export default function VideoUpload() {
     const [courses, setCourses] = useState([]);
     const [uploading, setUploading] = useState(false);
 
+    // Load all courses
     useEffect(() => {
-        axios.get("courses/").then((res) => setCourses(res.data.results || res.data)).catch(console.error);
+axios.get("/api/courses/")
+            .then((res) => setCourses(res.data.results || res.data))
+            .catch(console.error);
     }, []);
 
     const upload = () => {
@@ -19,13 +23,15 @@ export default function VideoUpload() {
         if (!courseId) return alert("Select a course");
 
         setUploading(true);
+
         const storageRef = ref(storage, `videos/${Date.now()}_${file.name}`);
         const uploadTask = uploadBytesResumable(storageRef, file);
 
         uploadTask.on(
             "state_changed",
             (snapshot) => {
-                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                const progress =
+                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                 console.log("Upload is " + progress + "% done");
             },
             (error) => {
@@ -34,14 +40,17 @@ export default function VideoUpload() {
                 setUploading(false);
             },
             async () => {
-                const url = await getDownloadURL(uploadTask.snapshot.ref);
-                await axios.post("videos/", {
+                const videoUrl = await getDownloadURL(uploadTask.snapshot.ref);
+
+                // Save to Django Backend
+axios.post("/api/videos/", {
                     course: courseId,
                     title,
                     description: desc,
-                    storage_url: url,
+                    storage_url: videoUrl,
                 });
-                alert("Uploaded & saved");
+
+                alert("Uploaded & saved!");
                 setFile(null);
                 setTitle("");
                 setDesc("");
@@ -52,8 +61,9 @@ export default function VideoUpload() {
     };
 
     return (
-        <div className="p-6 max-w-md">
+        <div className="p-6 max-w-md mx-auto">
             <h2 className="text-lg font-bold mb-3">Upload Video</h2>
+
             <input
                 type="text"
                 value={title}
@@ -61,12 +71,14 @@ export default function VideoUpload() {
                 placeholder="Video title"
                 className="w-full p-2 border mb-2 rounded"
             />
+
             <textarea
                 value={desc}
                 onChange={(e) => setDesc(e.target.value)}
                 placeholder="Video description"
                 className="w-full p-2 border mb-2 rounded"
             />
+
             <select
                 value={courseId}
                 onChange={(e) => setCourseId(e.target.value)}
@@ -74,17 +86,19 @@ export default function VideoUpload() {
             >
                 <option value="">Select Course</option>
                 {courses.map((c) => (
-                    <option value={c.id} key={c.id}>
+                    <option key={c.id} value={c.id}>
                         {c.title}
                     </option>
                 ))}
             </select>
+
             <input
                 type="file"
                 accept="video/*"
                 onChange={(e) => setFile(e.target.files[0])}
-                className="mb-2"
+                className="mb-3"
             />
+
             <button
                 onClick={upload}
                 disabled={uploading}

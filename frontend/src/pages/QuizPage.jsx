@@ -7,11 +7,23 @@ export default function QuizPage() {
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState({});
 
-  useEffect(() => {
-    axios.get(`/api/courses/${id}/quiz/student`)
-      .then(res => setQuestions(res.data))
-      .catch(err => console.error(err));
-  }, [id]);
+useEffect(() => {
+  axios.get(`/courses/${id}/questions/`)
+    .then(res => setQuestions(
+      res.data.map(q => ({
+        id: q.id,
+        question: q.question_text,
+        options: [
+          q.option_a,
+          q.option_b,
+          q.option_c,
+          q.option_d
+        ]
+      }))
+    ))
+    .catch(err => console.error(err));
+}, [id]);
+
 
   const handleSelect = (qId, optionIndex) => {
     setAnswers(prev => ({ ...prev, [qId]: optionIndex }));

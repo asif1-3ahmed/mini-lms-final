@@ -68,6 +68,12 @@ export default function ModuleList() {
             ))}
           </div>
         )}
+<button
+  className="mt-2 px-4 py-2 bg-green-600 text-white rounded"
+  onClick={() => api.post(`/api/progress/${courseId}/module/${index}/complete/`)}
+>
+  Mark Complete
+</button>
 
       </div>
     </div>

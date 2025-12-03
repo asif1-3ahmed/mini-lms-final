@@ -1,14 +1,26 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import CourseViewSet, VideoViewSet, course_list_api, course_list_page, course_single_api  # ✅ import here
+from django.urls import path
+from .views import CourseQuestionsView, SaveQuestionsView
+from .views import SaveQuizResultView
+from .views import SaveQuizToProgressView
 
-router = DefaultRouter()
-router.register(r"courses", CourseViewSet, basename="course")
-router.register(r"videos", VideoViewSet, basename="video")
+from .views import (
+    GetProgressView,
+    UpdateProgressView,
+     CompleteModuleView, 
+    
+)
+
+
+    
 
 urlpatterns = [
-    path("api/", include(router.urls)),               # /api/courses/, /api/courses/<id>/, /api/videos/
-    path("api/public/courses/", course_list_api, name="public-course-list"),
-    path("admin/manage-courses/", course_list_page, name="admin-manage-courses-page"),
+    path("api/courses/<int:course_id>/questions/", CourseQuestionsView.as_view(), name="course-questions"),
+    path("api/courses/<int:course_id>/questions/save/", SaveQuestionsView.as_view(), name="save-questions"),
+     path("api/courses/<int:course_id>/save-result/", SaveQuizResultView.as_view()),
+     path("api/progress/<int:course_id>/", GetProgressView.as_view()),
+path("api/progress/<int:course_id>/module/<int:module_index>/complete/", CompleteModuleView.as_view()),
+path("api/progress/<int:course_id>/quiz/save/", SaveQuizToProgressView.as_view()),
+    path("api/progress/<int:course_id>/update/", UpdateProgressView.as_view()),
+
 
 ]

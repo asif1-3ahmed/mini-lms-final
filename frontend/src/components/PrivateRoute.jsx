@@ -3,24 +3,27 @@ import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 
 export default function PrivateRoute({ children, role }) {
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
 
-  if (!user) {
-    return <Navigate to="/login" />;
-  }
+  // ⛔ Prevent redirect while loading user
+  if (loading) return null;
 
-  // ✅ Allow multiple roles
+  // 🔹 If no user → redirect to login
+  if (!user) return <Navigate to="/login" replace />;
+
+  // 🔹 Multiple roles allowed
   if (Array.isArray(role)) {
     if (!role.includes(user.role)) {
-      return <Navigate to="/login" />;
+      return <Navigate to="/login" replace />;
     }
-    return children ? children : <Outlet />;
+    return children || <Outlet />;
   }
 
-  // ✅ Allow single role
-  if (user.role !== role) {
-    return <Navigate to="/login" />;
+  // 🔹 Single role allowed
+  if (role && user.role !== role) {
+    return <Navigate to="/login" replace />;
   }
 
-  return children ? children : <Outlet />;
+  // 🔹 Access granted
+  return children || <Outlet />;
 }
